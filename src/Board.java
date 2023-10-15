@@ -6,9 +6,10 @@ enum BoardState {
 }
 
 public class Board {
-  Cell[][] cells;
-  int numRows;
-  int numCols;
+  private Cell[][] cells;
+  private int numRows;
+  private int numCols;
+  private BoardState boardState;
 
   Board(int numRows, int numCols) {
     cells = new Cell[numRows][numCols];
@@ -19,14 +20,21 @@ public class Board {
     }
     this.numRows = numRows;
     this.numCols = numCols;
+    this.boardState = BoardState.CONTINUE;
   }
 
   public void printCells() {
+    System.out.println("");
+    System.out.print("   ");
+    for (int k = 0; k < numCols; k++) {
+      System.out.printf(" %d ", k);
+    }
+    System.out.print("\n\n");
+
     for (int i = 0; i < numRows; i++) {
-      System.out.print("1: ");
+      System.out.printf("%d  ", i);
 
       for (int j = 0; j < numCols; j++) {
-
         switch (cells[i][j].getCellState()) {
           case HIDDEN:
             System.out.print("[ ]");
@@ -47,6 +55,7 @@ public class Board {
       }
       System.out.println("");
     }
+    System.out.println("");
   }
 
   public void initializeCells(int numMines) {
@@ -59,6 +68,25 @@ public class Board {
   }
 
   public void makeMove(int row, int col) {
+    revealCellsRecursively(row, col);
+    updateBoardState();
+  }
+
+  public void toggleFlag(int row, int col) {
+    Cell cell = cells[row][col];
+    switch (cell.getCellState()) {
+      case REVEALED:
+        return;
+      case HIDDEN:
+        cell.setCellState(CellState.FLAG);
+        return;
+      case FLAG:
+        cell.setCellState(CellState.HIDDEN);
+        return;
+    }
+  }
+
+  private void revealCellsRecursively(int row, int col) {
     Cell cell = cells[row][col];
 
     cells[row][col].setCellState(CellState.REVEALED);
@@ -71,7 +99,7 @@ public class Board {
         if ((i == row && j == col) || cells[i][j].getCellState() == CellState.REVEALED)
           continue;
 
-        makeMove(i, j);
+        revealCellsRecursively(i, j);
       }
     }
   }
@@ -107,12 +135,13 @@ public class Board {
     return (int) Math.floor(Math.random() * (max - min + 1) + min);
   }
 
-  public BoardState checkBoardState() {
+  public void updateBoardState() {
     BoardState state = BoardState.WIN;
     for (int i = 0; i < numRows; i++) {
       for (int j = 0; j < numCols; j++) {
         if (cells[i][j].getCellState() == CellState.REVEALED && cells[i][j].isMine()) {
-          return BoardState.LOSS;
+          this.boardState = BoardState.LOSS;
+          return;
         }
 
         if (cells[i][j].getCellState() != CellState.REVEALED && !cells[i][j].isMine()) {
@@ -120,6 +149,18 @@ public class Board {
         }
       }
     }
-    return state;
+    this.boardState = state;
+  }
+
+  public int getNumCols() {
+    return numCols;
+  }
+
+  public int getNumRows() {
+    return numRows;
+  }
+
+  public BoardState getBoardState() {
+    return boardState;
   }
 }
