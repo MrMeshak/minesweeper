@@ -15,6 +15,11 @@ public class Cell {
     this.cellState = CellState.HIDDEN;
   }
 
+  Cell(int value, CellState cellState) {
+    this.value = value;
+    this.cellState = cellState;
+  }
+
   public int getValue() {
     return this.value;
   }

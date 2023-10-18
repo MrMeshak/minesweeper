@@ -23,6 +23,12 @@ public class Board {
     this.boardState = BoardState.CONTINUE;
   }
 
+  Board(Cell[][] cells) {
+    this.cells = cells;
+    this.numRows = cells.length;
+    this.numCols = cells[0].length;
+  }
+
   public void printCells() {
     System.out.println("");
     System.out.print("   ");
