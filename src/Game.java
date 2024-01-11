@@ -1,4 +1,3 @@
-import java.util.Arrays;
 import java.util.Scanner;
 
 enum InputMode {
@@ -103,69 +102,5 @@ public class Game {
 
       return new int[] { row, col };
     }
-
-    // private int[] getUserInput(Scanner scanner) {
-    // while (true) {
-    // int row = -1;
-    // try {
-    // row = Integer.parseInt(scanner.next());
-    // if (row <= 0 && row >= board.getNumRows()) {
-    // throw new Exception();
-    // }
-    // } catch (Exception e) {
-    // System.out.printf("Row must be a whole number between %d and %d, please try
-    // again", 0, board.getNumRows());
-    // }
-
-    // int col = -1;
-    // try {
-    // col = Integer.parseInt(scanner.next());
-    // if (col <= 0 && col >= board.getNumRows()) {
-    // throw new Exception();
-    // }
-    // } catch (Exception e) {
-    // System.out.printf("Col must be a whole number between %d and %d, please try
-    // again", 0, board.getNumCols());
-    // }
-
-    // String flag = "";
-    // int flagIntValue = 0;
-    // try {
-    // flag = scanner.next();
-    // } catch (Exception e) {
-    // }
-
-    // if (flag == "f") {
-    // flagIntValue = 1;
-    // }
-
-    // return new int[] { row, col, flagIntValue };
-    // }
-
-    // private int getUserIntInput(Scanner scanner, int min, int max) {
-    // while (true) {
-    // try {
-    // int input = Integer.parseInt(scanner.nextLine());
-    // if (input <= min && input >= max) {
-    // throw new Exception();
-    // }
-    // } catch (Exception e) {
-    // System.out.printf("Must be a whole number between %d and %d, please try
-    // again: ", min, max);
-    // }
-    // }
-    // }
-
-    // private boolean getUserFlagInput(Scanner scanner, String flag) {
-    // while (true) {
-    // String input = scanner.nextLine();
-    // if (input == flag) {
-    // return true;
-    // } else if (input == "") {
-    // return false;
-    // } else {
-    // System.out.printf("Press enter to skip or enter %s\n", flag);
-    // }
-    // }
   }
 }
