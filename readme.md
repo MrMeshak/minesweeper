@@ -5,6 +5,7 @@ A command line interface minesweeper game built in Java.
 ## Demo & Snippets
 
 **Gameplay**
+
 ![Minesweeper Gameplay](https://github.com/MrMeshak/minesweeper/assets/94204153/4dd2fe47-2e88-44e7-bc60-08c969b0a5f0)
 
 **Install**
