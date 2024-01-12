@@ -30,7 +30,8 @@ A command line interface minesweeper game built in Java.
 
 My goal with this project was to practice some of my Java fundamentals and refresh my basic java skills.
 
-- Re-familiarize myself with the Java syntax and solving problems with an OOP mindset.
+- brush up on Java syntax
+- practice using an Object Orientated aproach to problem solving.
 
 ## Technologies
 
